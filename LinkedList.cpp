@@ -17,33 +17,93 @@ void rearrangePtrs(node_t * previous, node_t * current,
 	post = post->next;
 }
 
+//returns num of nodes in list
+int listSize (node_t * list){
+	//if there is no list
+	if(list == NULL) {
+		return 0;
+	}
+
+    //declare ptr to node, set it to start of list
+    node_t * whereAmI = list;
+    int count = 1; //start counter at 1 since we are at first node
+    while (whereAmI->next != NULL){
+        whereAmI = whereAmI->next; //go to next node
+        count++; //adjust size variable
+    }
+
+    //if we are out here that means we have reached end of the list
+    return count; //this is our list size
+
+}
+
 //Takes a head pointer of list as an argument and reverses
 //all pointers. Sets the tail of the original list as the
 //new head.
 void reverseList (node_t * list) {
-	node_t * previous = list;
-	node_t * current = list->next;
-	node_t * post = current->next;
-	previous->next = NULL;	//head pointer is now tail
-	current->next = previous;	//begin the reversing of list
-	//move all pointers one up
-	previous = current;
-	current = post;
-	post = post->next;
+	node_t * previous;
+	node_t * current;
+	node_t * post;
 
-	while (post->next != NULL) {
-		rearrangePtrs(previous, current, post);
+	printf("listsize is %d\n", listSize(list));
+
+	//if list has no nodes or 1 node
+		//nothing will be done
+
+	//if list has 2 nodes
+	if(listSize(list) == 2) {
+		current = list;
+		list = list->next;
+		list->next = current;
+		current->next = NULL;
 	}
 
-	//At this point we are at the last node of our original list
-	//This node is still pointing to NULL, we need to make this
-	//the head pointer now
-	post->next = previous;
+	//if list is of size 3
+	else if (listSize(list) == 3) {
+		printf("Point 1\n");
+		previous = list;
+		printf("Point 2\n");
+		current = list->next;
+		printf("Point 3\n");
+		post = current->next;
+		printf("Point 4\n");
+		current->next = previous;
+		printf("Point 5\n");
+		post->next = current;
+		printf("Point 6\n");
+		list->next = NULL;	//make head the new tail
+		printf("Point 7\n");
+		list = post;	//make tail the new head
+		printf("Point 8\n");
+	}
 
-	//At this point the list is completely reversed. We can now
-	//set a new head pointer by setting our list pointer to the
-	//last node in our original list
-	list = post;
+	//if list has 4 or more nodes
+	else {
+		previous = list;
+		current = list->next;
+		post = current->next;
+
+		previous->next = NULL;	//head pointer is now tail
+		current->next = previous;	//begin the reversing of list
+		//move all pointers one up
+		previous = current;
+		current = post;
+		post = post->next;
+
+		while (post->next != NULL) {
+			rearrangePtrs(previous, current, post);
+		}
+
+		//At this point we are at the last node of our original list
+		//This node is still pointing to NULL, we need to make this
+		//the head pointer now
+		post->next = previous;
+
+		//At this point the list is completely reversed. We can now
+		//set a new head pointer by setting our list pointer to the
+		//last node in our original list
+		list = post;
+	}
 
 }
 
@@ -103,21 +163,6 @@ int searchList (node_t * list, int data){
     else {
         return 0;
     }
-}
-
-//returns num of nodes in list
-int listSize (node_t * list){
-    //declare ptr to node, set it to start of list
-    node_t * whereAmI = list;
-    int count = 1; //start counter at 1 since we are at first node
-    while (whereAmI->next != NULL){
-        whereAmI = whereAmI->next; //go to next node
-        count++; //adjust size variable
-    }
-
-    //if we are out here that means we have reached end of the list
-    return count; //this is our list size
-
 }
 
 //deleted the node at location num where num =1 is start node of list
