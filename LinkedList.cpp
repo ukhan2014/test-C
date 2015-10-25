@@ -37,50 +37,53 @@ int listSize (node_t * list){
 
 }
 
+void printList (node_t * list){
+    node_t * currentNode = list; //create currentNode pointer and give it address of the list
+    do{
+        printf ("%d\n", currentNode->data);
+        currentNode = currentNode->next; //go to next node in list
+    }while(currentNode != NULL);
+}
+
 //Takes a head pointer of list as an argument and reverses
 //all pointers. Sets the tail of the original list as the
 //new head.
-void reverseList (node_t * list) {
+node_t * reverseList (node_t * list) {
+	node_t * listPtr = list;
 	node_t * previous;
 	node_t * current;
 	node_t * post;
 
-	printf("listsize is %d\n", listSize(list));
+	printf("listsize is %d\n", listSize(listPtr));
 
 	//if list has no nodes or 1 node
 		//nothing will be done
 
 	//if list has 2 nodes
-	if(listSize(list) == 2) {
-		current = list;
-		list = list->next;
-		list->next = current;
+	if(listSize(listPtr) == 2) {
+		current = listPtr;
+		listPtr = listPtr->next;
+		listPtr->next = current;
 		current->next = NULL;
 	}
 
 	//if list is of size 3
-	else if (listSize(list) == 3) {
-		printf("Point 1\n");
-		previous = list;
-		printf("Point 2\n");
-		current = list->next;
-		printf("Point 3\n");
+	else if (listSize(listPtr) == 3) {
+		printList(listPtr);
+
+		previous = listPtr;
+		current = listPtr->next;
 		post = current->next;
-		printf("Point 4\n");
 		current->next = previous;
-		printf("Point 5\n");
 		post->next = current;
-		printf("Point 6\n");
-		list->next = NULL;	//make head the new tail
-		printf("Point 7\n");
-		list = post;	//make tail the new head
-		printf("Point 8\n");
+		listPtr->next = NULL;	//make head the new tail
+		listPtr = post;	//make tail the new head
 	}
 
 	//if list has 4 or more nodes
 	else {
-		previous = list;
-		current = list->next;
+		previous = listPtr;
+		current = listPtr->next;
 		post = current->next;
 
 		previous->next = NULL;	//head pointer is now tail
@@ -102,21 +105,9 @@ void reverseList (node_t * list) {
 		//At this point the list is completely reversed. We can now
 		//set a new head pointer by setting our list pointer to the
 		//last node in our original list
-		list = post;
+		listPtr = post;
 	}
-
-}
-
-void printList (node_t * list){
-	printf("In PList\n");
-    node_t * currentNode = list; //create currentNode pointer and give it address of the list
-    printf("currentNode = list\n");
-    do{
-        printf ("%d\n", currentNode->data);
-        currentNode = currentNode->next; //go to next node in list
-        printf("went to next node\n");
-    }while(currentNode != NULL);
-    printf("currentNode was NULL\n");
+	return listPtr;
 }
 
 // create and return a new node
@@ -183,6 +174,7 @@ void deleteNode(node_t * list, int num) {
 
 }
 int main () {
+	node_t * list;
     node_t start, end, middle, node4;
     start.data = 1;
     end.data =2;
@@ -212,8 +204,8 @@ int main () {
     printList (&start);
 
     printf ("about to reverse list\n");
-    reverseList(&start);
-    printList (&start);
+    list = reverseList(&start);
+    printList (list);
     printf("printed list...\n");
     return 0 ;
 
