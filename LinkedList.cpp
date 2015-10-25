@@ -5,6 +5,48 @@ typedef struct node {
     node * next;
 } node_t;
 
+//helper function for reverseList function. Changes the direction
+//of the pointer between previous and current pointers, and then
+//increments the node location of all pointers
+void rearrangePtrs(node_t * previous, node_t * current,
+		node_t * post) {
+	current->next = previous; //reverse current node's next pointer
+	//move pointers up one:
+	previous = current;
+	current = post;
+	post = post->next;
+}
+
+//Takes a head pointer of list as an argument and reverses
+//all pointers. Sets the tail of the original list as the
+//new head.
+void reverseList (node_t * list) {
+	node_t * previous = list;
+	node_t * current = list->next;
+	node_t * post = current->next;
+	previous->next = NULL;	//head pointer is now tail
+	current->next = previous;	//begin the reversing of list
+	//move all pointers one up
+	previous = current;
+	current = post;
+	post = post->next;
+
+	while (post->next != NULL) {
+		rearrangePtrs(previous, current, post);
+	}
+
+	//At this point we are at the last node of our original list
+	//This node is still pointing to NULL, we need to make this
+	//the head pointer now
+	post->next = previous;
+
+	//At this point the list is completely reversed. We can now
+	//set a new head pointer by setting our list pointer to the
+	//last node in our original list
+	list = post;
+
+}
+
 void printList (node_t * list){
     node_t * currentNode = list; //create currentNode pointer and give it address of the list
     do{
@@ -36,7 +78,7 @@ void insertNode(node_t * list, int data, int n) {
     //detach current node and adjust pointers
     newNode.next = ptr->next;
     ptr->next =&newNode;
-    
+
 }
 
 //search list for first occurrence of data. if found, return the node number that it was found at; otherwise return 0;
@@ -54,7 +96,7 @@ int searchList (node_t * list, int data){
             nodePtr = nodePtr->next;
         }
     }
-    
+
     if(found) {
         return nodeLocation;
     }
@@ -72,10 +114,10 @@ int listSize (node_t * list){
         whereAmI = whereAmI->next; //go to next node
         count++; //adjust size variable
     }
-    
+
     //if we are out here that means we have reached end of the list
     return count; //this is our list size
-    
+
 }
 
 //deleted the node at location num where num =1 is start node of list
@@ -89,37 +131,41 @@ void deleteNode(node_t * list, int num) {
     }
     //make next pointer point to the next-next node
     listPtr->next = listPtr->next->next;
-    
+
 }
 int main () {
     node_t start, end, middle, node4;
     start.data = 1;
     end.data =2;
     middle.data = 500;
-    end.next = NULL; //make end of list point to null    
+    end.next = NULL; //make end of list point to null
     start.next = &end;
-    
+
     //printf ("start.next data is %d\n", start.next->data);
-    
+
     printList (&start );
     node4 = createNode (4);
-    
+
     //printf ("Let us add a node in the middle\n");
-    
+
     //make start point to middle node
     start.next = &middle;
     //make middle node point to end node
     middle.next = &node4;
     node4.next = &end;
-    
+
     printf ("added two new nodes \n");
-    
+
     printList (&start);
     printf ("list size is %d\n", listSize (&start));
     printf ("about to delete node 3\n");
     deleteNode (&start,3);
     printList (&start);
-    
+
+    printf ("about to reverse list\n");
+    reverseList(&start);
+    printList (&start);
+    printf("printed list...\n");
     return 0 ;
-    
+
 }
