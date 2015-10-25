@@ -108,11 +108,15 @@ void reverseList (node_t * list) {
 }
 
 void printList (node_t * list){
+	printf("In PList\n");
     node_t * currentNode = list; //create currentNode pointer and give it address of the list
+    printf("currentNode = list\n");
     do{
         printf ("%d\n", currentNode->data);
         currentNode = currentNode->next; //go to next node in list
+        printf("went to next node\n");
     }while(currentNode != NULL);
+    printf("currentNode was NULL\n");
 }
 
 // create and return a new node
