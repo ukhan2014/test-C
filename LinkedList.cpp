@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+#ifndef _LINKEDLIST_H
+#define _LINKEDLIST_H
+#endif
+
 typedef struct node {
     int data;
     node * next;
@@ -173,6 +177,8 @@ void deleteNode(node_t * list, int num) {
     listPtr->next = listPtr->next->next;
 
 }
+
+/*		MAIN
 int main () {
 	node_t * list;
     node_t start, end, middle, node4;
@@ -210,3 +216,5 @@ int main () {
     return 0 ;
 
 }
+
+*/
