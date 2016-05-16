@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+int isSubString(char * mainStr, char * subStr) {
+    int result = 0;
+    int index = 0;
+    bool firstMismatch = true;
+    while(1) {
+        if(!(*mainStr)) {
+            break;
+        }
+        if(*subStr == *(mainStr++)) {
+            firstMismatch = true;
+            printf("matching letter! %c\n", *(mainStr-1));
+            subStr++;
+            index++;
+            if(!(*subStr)) {
+                printf("substring found!\n");
+                result++;
+            }
+        }
+        else {
+            if(firstMismatch) {
+                printf("decrementing mainStr!\n");
+                mainStr--;
+                firstMismatch = false;
+            }
+            printf("mismatch: mainStr: %c, substr = %c\n", *mainStr, *subStr);
+            for( ; index > 0; index--) {
+                subStr--;
+            }
+        }
+    }
+    
+    return result;
+}
+
+void printString(char mainStr[]){
+    int i = 0;
+    while(mainStr[i]) {
+        printf("%c", mainStr[i]);
+        i++;
+    }
+    printf("\n\n");
+}
+
+int main()
+{
+    char mainStr[] = "mutable strimutabng mutablebecause mutamutabmarraymutabl syntax usedmutable";
+    char subStr[] = "mutable";
+    
+    int count = isSubString(mainStr,subStr);
+    printf("substring was found %d times.\n", count);
+    
+    return 0;
+}
