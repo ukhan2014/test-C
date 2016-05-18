@@ -32,8 +32,10 @@ int main() {
     int N, Q, queryType, x, y;
     
     // Get values of N and Q
+    //printf("Please eter values of N and Q:\n");
     scanf("%d %d", &N, &Q);
-    printf("N=%d  Q=%d\n",N,Q);
+    //printf("N=%d  Q=%d\n",N,Q);
+    int loopCountdown = Q;  // Loop Q times
     //N=2; Q=5;
     
     int i;
@@ -44,31 +46,30 @@ int main() {
         listPtr = listPtr->next;
     }
     
-    while(1) {
+    while(loopCountdown--) {
+        //printf("Please enter queryType, x and y like: qt x y\n");
         scanf("%d %d %d", &queryType, &x, &y);
-        printf("queryType=%d  x=%d  y=%d\n", queryType,x,y);
+        //printf("queryType=%d  x=%d  y=%d\n", queryType,x,y);
         //queryType=1; x=0; y=5;
         int index = (x ^ lastAns) % N;
-        printf("index=%d\n",index);
+        //printf("index=%d   Resetting to beginning of seqList\n",index);
         listPtr = seqList;                          // reset pointer to beginning of seqList
         for(i=0; i<index; i++) {
-            printf("traversing to index in seqList\n");
             listPtr = listPtr->next;                // traverse to index in seqList
-            printf("line 57\n");
         }
         
         if(queryType == 1) {
             // if this sequence is empty
             seqNode_t * tempSeqPtr = NULL;          // temp Ptr to traverse a sequence
             if(!listPtr->seq) {
-                printf("Creating seq at")
+                //printf("Creating new sequence\n");
                 listPtr->seq = createSeqNode();
                 listPtr->seq->data = y;
                 listPtr->seq->next = NULL;
             }
             else {
                 tempSeqPtr = listPtr->seq;
-                while(!(tempSeqPtr->next)) {
+                while(tempSeqPtr->next) {
                     tempSeqPtr = tempSeqPtr->next;
                 }
                 tempSeqPtr->next = createSeqNode();
@@ -81,12 +82,12 @@ int main() {
             int size = 0;
             seqNode_t * tempSeqPtr = listPtr->seq;
             // find size of sequence
-            while(tempSeqPtr->next) {
+            while(tempSeqPtr) {
                 tempSeqPtr = tempSeqPtr->next;
                 size++;
             }
+            
             int element = y % size;
-          
             tempSeqPtr = listPtr->seq;
             // go to index element
             int i;
