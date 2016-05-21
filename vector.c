@@ -31,13 +31,19 @@ int vector_get(Vector *vector, int index) {
 }
 
 void vector_set(Vector *vector, int index, int value) {
-    
+    while(index >= (vector->size)) {
+        vector_append(vector, 0);
+    }
+    *((vector->data)+index) = value;
 }
 
 void vector_double_capacity_if_full(Vector *vector){
-    
+    if(vector->size >= vector->capacity) {
+        vector->capacity *= 2;
+        realloc(vector, sizeof(int)*(vector->capacity));
+    }
 }
 
 void vector_free(Vector *vector){
-    
+    free(vector->data);
 }
