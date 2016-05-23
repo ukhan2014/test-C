@@ -21,16 +21,18 @@ typedef struct listNode {
 } listNode_t;
 
 void vector_init(intVector *vector) {
-    vector = (intVector *) malloc(sizeof(intVector));
     vector->size = 0;
     vector->capacity = VECTOR_INITIAL_CAPACITY;
     vector->data = (int *)malloc(sizeof(int) * vector->capacity);
 }
 
 void seqVector_init(seqVector * vector, int capacity) {
-    vector->size = capacity;
-    vector = (seqVector *)malloc(sizeof(seqVector) * capacity);
-    vector_init((vector->seq));
+    int i;
+    for(i=0; i<capacity; i++) {
+        (vector + i)->size = capacity;
+        (vector + i)->seq = (intVector *) malloc(sizeof(intVector));
+        vector_init(((vector + i)->seq));
+    }
 }
 
 void vector_double_capacity_if_full(intVector **vector){
@@ -53,21 +55,21 @@ void vector_free(intVector *vector){
 }
 
 int main() {
-    seqVector * seqList;
     int lastAns = 0;
     int N, Q, queryType, x, y;
     
     // Get values of N and Q
     //printf("Please eter values of N and Q:\n");
-    //scanf("%d %d", &N, &Q);
+    scanf("%d %d", &N, &Q);
     //printf("N=%d  Q=%d\n",N,Q);
     
+    seqVector * seqList = (seqVector *) malloc(sizeof(seqVector) * N);
     seqVector_init(seqList, N);
     
     int loopCountdown = Q;  // Loop Q times
     while(loopCountdown--) {
         //printf("Please enter queryType, x and y like: qt x y\n");
-        //scanf("%d %d %d", &queryType, &x, &y);
+        scanf("%d %d %d", &queryType, &x, &y);
         //printf("queryType=%d  x=%d  y=%d\n", queryType,x,y);
         //queryType=1; x=0; y=5;
         int index = (x ^ lastAns) % N;
