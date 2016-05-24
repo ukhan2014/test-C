@@ -1,5 +1,7 @@
 # test-C
 
+Random exercises and puzzles in C.
+
 - BST.cpp
 - LinkedList.cpp
 - LinkedList.h
