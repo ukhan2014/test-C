@@ -33,7 +33,7 @@ void Print(Node *head)
  head pointer input could be NULL as well for empty list
  Return the head of the updated list
  */
-Node* Insert(Node *head,int data)
+Node * Insert_at_end(Node *head,int data)
 {
     Node * tempPtr = head;
     if(tempPtr) {
@@ -47,5 +47,24 @@ Node* Insert(Node *head,int data)
         head = (Node *) malloc(sizeof(Node));
         head->data = data;
     }
+    return head;
+}
+
+/*
+ Insert Node at the begining of a linked list
+ Initially head pointer argument could be NULL for empty list
+ return back the pointer to the head of the linked list
+ 
+ For example:
+ 1. We have an empty list, on inserting 1, 1 becomes new head.
+ 2. We have a list with 1 as head, on inserting 2, 2 becomes 
+    the new head.
+ */
+Node * Insert_at_beginning(Node * head, int data)
+{
+    Node * temp = (Node *) malloc(sizeof(Node));
+    temp->data = data;
+    temp->next = head;
+    head = temp;
     return head;
 }
