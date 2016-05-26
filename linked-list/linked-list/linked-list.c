@@ -138,3 +138,19 @@ Node* Delete(Node *head, int position)
     
     return head;
 }
+
+/*
+ Print elements of a linked list in reverse order as standard output
+ head pointer could be NULL as well for empty list
+ */
+void ReversePrint(Node *head)
+{
+    if(!head) {
+        return;
+    }
+    else {
+        ReversePrint(head->next);
+    }
+    printf("%d\n", head->data);
+    return;
+}
