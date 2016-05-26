@@ -109,3 +109,32 @@ Node* InsertNth(Node *head, int data, int position)
     }
     return head;
 }
+
+/*
+ Delete Node at a given position in a linked list
+ */
+Node* Delete(Node *head, int position)
+{
+    int traverse = 0;
+    Node * tmp = head;
+    Node * toDelete = NULL;
+    if(!head) {
+        //printf("no head");
+    }
+    else if(position == 0) {
+        head = head->next;
+        free(tmp);
+    }
+    else {
+        while(traverse < (position - 1)) {
+            //printf("traversing\n");
+            tmp = tmp->next;
+            traverse++;
+        }
+        toDelete = tmp->next;
+        tmp->next = tmp->next->next;
+        free(toDelete);
+    }
+    
+    return head;
+}
