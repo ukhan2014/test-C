@@ -68,3 +68,44 @@ Node * Insert_at_beginning(Node * head, int data)
     head = temp;
     return head;
 }
+
+/*
+ Insert Node at a given position in a linked list
+ head can be NULL
+ First element in the linked list is at position 0
+ */
+Node* InsertNth(Node *head, int data, int position)
+{
+    Node * newNode = (Node *) malloc(sizeof(Node));
+    newNode->data = data;
+    if(!head) {
+        printf("no head\n");
+        head = newNode;
+        head->next = NULL;
+    }
+    else {
+        Node * temp = NULL;
+        if(position == 0) {
+            printf("pos is 0\n");
+            temp = head;
+            printf("temp->data = %d\n", temp->data);
+            head = newNode;
+            head->next = temp;
+            
+            head->next->next = NULL;
+            printf("inserted at position 0\n");
+        }
+        else {
+            printf("pos=%d\n", position);
+            while((position > 1)) {
+                printf("hi\n");
+                temp = temp->next;
+                position--;
+            }
+            newNode->next = temp->next;
+            temp->next = newNode;
+        }
+        
+    }
+    return head;
+}
