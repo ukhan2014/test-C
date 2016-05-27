@@ -154,3 +154,36 @@ void ReversePrint(Node *head)
     printf("%d\n", head->data);
     return;
 }
+
+/*
+ Reverse a linked list and return pointer to the head
+ The input list will have at least one element
+ */
+Node* Reverse(Node *head)
+{
+    Node * tmp1 = NULL;
+    Node * tmp2 = NULL;
+    if(!head) {
+        return NULL;
+    }
+    else {
+        if(head->next) {
+            tmp1 = head->next;
+            tmp2 = head->next->next;
+        }
+        else {
+            return head;
+        }
+    }
+    head->next = NULL;
+    while(tmp1 && tmp2) {
+        tmp1->next = head;
+        head = tmp1;
+        tmp1 = tmp2;
+        tmp2 = tmp2->next;
+    }
+    tmp1->next = head;
+    
+    return tmp1;
+}
+
