@@ -187,3 +187,20 @@ Node* Reverse(Node *head)
     return tmp1;
 }
 
+/*
+ Reverse a linked list and return pointer to the head
+ Recursive implementation
+ */
+Node* ReverseRecursive(Node *head)
+{
+    Node * temp;
+    Node * newHead;
+    if(!head || !head->next) {
+        return head;
+    }
+    temp = head->next;
+    head->next = NULL;
+    newHead = Reverse(temp);
+    temp->next = head;
+    return newHead;
+}
