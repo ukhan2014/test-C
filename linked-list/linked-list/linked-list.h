@@ -17,4 +17,12 @@ typedef struct Node
     struct Node *next;
 } Node;
 
+void Print(Node *head);
+Node * Insert_at_end(Node *head,int data);
+Node * Insert_at_beginning(Node * head, int data);
+Node* InsertNth(Node *head, int data, int position);
+Node* Delete(Node *head, int position);
+void ReversePrint(Node *head);
+Node* Reverse(Node *head);
+
 #endif /* linked_list_h */
