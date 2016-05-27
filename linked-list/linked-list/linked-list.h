@@ -24,5 +24,6 @@ Node* InsertNth(Node *head, int data, int position);
 Node* Delete(Node *head, int position);
 void ReversePrint(Node *head);
 Node* Reverse(Node *head);
+Node* ReverseRecursive(Node *head);
 
 #endif /* linked_list_h */
