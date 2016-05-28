@@ -204,3 +204,20 @@ Node* ReverseRecursive(Node *head)
     temp->next = head;
     return newHead;
 }
+
+/*
+ Compare two linked lists A and B
+ Return 1 if they are identical and 0 if they are not.
+ */
+int CompareLists(Node *headA, Node* headB)
+{
+    while(headA && headB) {
+        if(headA->data != headB->data)
+            return 0;
+        headA = headA->next;
+        headB = headB->next;
+    }
+    if(!headA && !headB)
+        return 1;
+    return 0;
+}
