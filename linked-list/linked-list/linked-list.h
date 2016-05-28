@@ -25,5 +25,6 @@ Node* Delete(Node *head, int position);
 void ReversePrint(Node *head);
 Node* Reverse(Node *head);
 Node* ReverseRecursive(Node *head);
+int CompareLists(Node *headA, Node* headB);
 
 #endif /* linked_list_h */
