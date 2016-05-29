@@ -221,3 +221,29 @@ int CompareLists(Node *headA, Node* headB)
         return 1;
     return 0;
 }
+
+/*
+ Merge two sorted lists A and B as one linked list
+ */
+Node* MergeLists(Node *headA, Node* headB)
+{
+    if(!headA) {
+        return headB;
+    }
+    else if(!headB) {
+        return headA;
+    }
+    Node * returnList;
+    Node * otherList;
+    if(headA->data <= headB->data) {
+        returnList = headA;
+        otherList = headB;
+    }
+    else {
+        returnList = headB;
+        otherList = headA;
+    }
+    returnList->next = MergeLists(returnList->next, otherList);
+    
+    return returnList;
+}
