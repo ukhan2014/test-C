@@ -247,3 +247,22 @@ Node* MergeLists(Node *headA, Node* headB)
     
     return returnList;
 }
+
+/*
+ Get Nth element from the end in a linked list of integers
+ Number of elements in the list will always be greater than N.
+ */
+int GetNode(Node *head,int positionFromTail)
+{
+    Node * tmp1 = head;
+    Node * tmp2 = head;
+    while(positionFromTail) {
+        tmp2 = tmp2->next;
+        positionFromTail--;
+    }
+    while(tmp2->next) {
+        tmp1 = tmp1->next;
+        tmp2 = tmp2->next;
+    }
+    return tmp1->data;
+}
