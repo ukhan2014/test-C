@@ -266,3 +266,23 @@ int GetNode(Node *head,int positionFromTail)
     }
     return tmp1->data;
 }
+
+/*
+ Remove all duplicate elements from a sorted linked list
+ */
+Node* RemoveDuplicates(Node *head)
+{
+    Node * tmp1 = head;
+    Node * tmp2;
+    while(tmp1->next) {
+        if(tmp1->data == tmp1->next->data) {
+            tmp2 = tmp1->next;
+            tmp1->next = tmp1->next->next;
+            free(tmp2);
+        }
+        else {
+            tmp1 = tmp1->next;
+        }
+    }
+    return head;
+}
