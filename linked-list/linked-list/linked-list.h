@@ -28,5 +28,6 @@ Node* ReverseRecursive(Node *head);
 int CompareLists(Node *headA, Node* headB);
 Node* MergeLists(Node *headA, Node* headB);
 int GetNode(Node *head,int positionFromTail);
+Node* RemoveDuplicates(Node *head);
 
 #endif /* linked_list_h */
