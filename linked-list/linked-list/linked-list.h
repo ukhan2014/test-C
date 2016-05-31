@@ -30,5 +30,6 @@ Node* MergeLists(Node *headA, Node* headB);
 int GetNode(Node *head,int positionFromTail);
 Node* RemoveDuplicates(Node *head);
 int has_cycle(Node* head);
+int FindMergeNode(Node *headA, Node *headB);
 
 #endif /* linked_list_h */
