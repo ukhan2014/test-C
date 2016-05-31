@@ -313,3 +313,26 @@ int has_cycle(Node* head) {
     }
     return 0;
 }
+
+/*
+ Find merge point of two linked lists
+ Returns the data in the merge node
+ */
+int FindMergeNode(Node *headA, Node *headB)
+{
+    Node * temp1 = headA->next;
+    Node * temp2 = headB->next;
+    
+    while(temp1) {
+        while(temp2) {
+            if(temp1 == temp2) {
+                return temp1->data;
+            }
+            temp2 = temp2->next;
+        }
+        temp2 = headB->next;
+        temp1 = temp1->next;
+    }
+    return -1; // couldnt find merge
+}
+
