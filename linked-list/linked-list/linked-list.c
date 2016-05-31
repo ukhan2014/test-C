@@ -286,3 +286,30 @@ Node* RemoveDuplicates(Node *head)
     }
     return head;
 }
+
+/*
+ Detect a cycle in a linked list. Note that the head
+ pointer may be 'NULL' if the list is empty. Method
+ assumes that list is limited to 100 nodes.
+ */
+
+int has_cycle(Node* head) {
+    Node * temp1 = head;
+    Node * temp2 = head;
+    int count;
+    if(!head) {
+        return 0;
+    }
+    while(temp1) {
+        count = 0;
+        while((temp2->next) && (count <= 100)) {
+            count++;
+            temp2 = temp2->next;
+            if(temp1 == temp2) {
+                return 1;
+            }
+        }
+        temp1 = temp1->next;
+    }
+    return 0;
+}
