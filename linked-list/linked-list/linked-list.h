@@ -33,5 +33,7 @@ Node* RemoveDuplicates(Node *head);
 int has_cycle(Node* head);
 int FindMergeNode(Node *headA, Node *headB);
 Node* SortedInsert(Node *head,int data);
+Node* ReverseDoubly(Node* head);
+
 
 #endif /* linked_list_h */
