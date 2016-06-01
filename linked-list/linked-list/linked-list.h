@@ -32,6 +32,7 @@ int GetNode(Node *head,int positionFromTail);
 Node* RemoveDuplicates(Node *head);
 int has_cycle(Node* head);
 int FindMergeNode(Node *headA, Node *headB);
+int FindMergeNode_IteratingPtrs(Node *headA, Node *headB);
 Node* SortedInsert(Node *head,int data);
 Node* ReverseDoubly(Node* head);
 
