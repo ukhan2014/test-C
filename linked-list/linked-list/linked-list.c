@@ -336,3 +336,41 @@ int FindMergeNode(Node *headA, Node *headB)
     return -1; // couldnt find merge
 }
 
+/*
+ Insert Node in a doubly sorted linked list
+ After each insertion, the list should be sorted
+ */
+Node* SortedInsert(Node *head,int data)
+{
+    Node * temp1 = head;
+    if(!head) {
+        printf("!head, putting in %d\n", data);
+        Node * newNode = (Node *) malloc(sizeof(Node));
+        newNode->data = data;
+        newNode->prev = NULL;
+        newNode->next = NULL;
+        return newNode;
+    }
+    else if(data <= head->data) {
+        printf("data <= head->data\n");
+        Node * newNode = (Node *) malloc(sizeof(Node));
+        newNode->data = data;
+        newNode->prev = NULL;
+        newNode->next = head;
+        return newNode;
+    }
+    else {
+        printf("data > head->data\n");
+        while ( (temp1) && (data > temp1->data) ) {
+            temp1 = temp1->next;
+        }
+        Node * newNode = (Node *) malloc(sizeof(Node));
+        newNode->data = data;
+        newNode->prev = temp1;
+        newNode->next = temp1->next;
+        temp1->next = newNode;
+        return head;
+    }
+}
+
+
