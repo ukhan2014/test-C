@@ -342,35 +342,37 @@ int FindMergeNode(Node *headA, Node *headB)
  */
 Node* SortedInsert(Node *head,int data)
 {
-    Node * temp1 = head;
     if(!head) {
-        printf("!head, putting in %d\n", data);
         Node * newNode = (Node *) malloc(sizeof(Node));
         newNode->data = data;
-        newNode->prev = NULL;
-        newNode->next = NULL;
         return newNode;
     }
-    else if(data <= head->data) {
-        printf("data <= head->data\n");
+    if(data < head->data) {
         Node * newNode = (Node *) malloc(sizeof(Node));
         newNode->data = data;
-        newNode->prev = NULL;
+        
         newNode->next = head;
-        return newNode;
+        newNode->prev = head->prev;
+        
+        head->prev = newNode;
+        head = newNode;
+        
     }
-    else {
-        printf("data > head->data\n");
-        while ( (temp1) && (data > temp1->data) ) {
-            temp1 = temp1->next;
+    else if(data >= head->data) {
+        Node * tmp = head;
+        while(tmp->next && data >= tmp->next->data) {
+            tmp = tmp->next;
         }
+        
         Node * newNode = (Node *) malloc(sizeof(Node));
         newNode->data = data;
-        newNode->prev = temp1;
-        newNode->next = temp1->next;
-        temp1->next = newNode;
-        return head;
+        
+        newNode->next = tmp->next;
+        newNode->prev = tmp;
+        if(tmp->next) {
+            tmp->next->prev = newNode;
+        }
+        tmp->next = newNode;
     }
+    return head;
 }
-
-
