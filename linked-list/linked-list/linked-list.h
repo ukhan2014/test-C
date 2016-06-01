@@ -15,6 +15,7 @@ typedef struct Node
 {
     int data;
     struct Node *next;
+    struct Node *prev;
 } Node;
 
 void Print(Node *head);
@@ -31,5 +32,6 @@ int GetNode(Node *head,int positionFromTail);
 Node* RemoveDuplicates(Node *head);
 int has_cycle(Node* head);
 int FindMergeNode(Node *headA, Node *headB);
+Node* SortedInsert(Node *head,int data);
 
 #endif /* linked_list_h */
