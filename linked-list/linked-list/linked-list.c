@@ -337,6 +337,29 @@ int FindMergeNode(Node *headA, Node *headB)
 }
 
 /*
+ Find merge point of two linked lists
+ using two iterating pointers
+ */
+int FindMergeNode_IteratingPtrs(Node *headA, Node *headB)
+{
+    Node * ptr1 = headA;
+    Node * ptr2 = headB;
+    if(!headA || !headB) {
+        return -1;
+    }
+    while(ptr1 != ptr2) {
+        if(!ptr1->next)
+            ptr1 = headB;
+        if(!ptr2->next)
+            ptr2 = headA;
+        ptr1 = ptr1->next;
+        ptr2 = ptr2->next;
+    }
+    return ptr1->data;
+}
+
+
+/*
  Insert Node in a doubly sorted linked list
  After each insertion, the list should be sorted
  */
