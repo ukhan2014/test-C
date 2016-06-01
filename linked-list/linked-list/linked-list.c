@@ -376,3 +376,27 @@ Node* SortedInsert(Node *head,int data)
     }
     return head;
 }
+
+/*
+ Reverse a doubly linked list, input list may also be empty
+ */
+Node* ReverseDoubly(Node* head)
+{
+    if(!head) {
+        return head;
+    }
+    else {
+        Node * traverse = head;
+        Node * swapPtr;
+        while(traverse->next) {
+            swapPtr = traverse->next;
+            traverse->next = traverse->prev;
+            traverse->prev = swapPtr;
+            traverse = traverse->prev;
+        }
+        swapPtr = traverse->next;
+        traverse->next = traverse->prev;
+        traverse->prev = swapPtr;
+        return traverse;
+    }
+}
