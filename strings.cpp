@@ -7,7 +7,7 @@ int main() {
     cin >> a >> b;
 
     //print two space-separated integers, representing 
-    //the length of  and  respectively. 
+    //the length of a and b
     cout << a.size() << " " << b.size() << endl;
     
     //print the string produced by concatenating a and b
