@@ -20,7 +20,7 @@ void preOrder(node * root) {
 }
 
 // Print the tree's postOrder traversal
-void postOrder(node *root) {
+void postOrder(node * root) {
     if(root->left) {
         postOrder(root->left);
     }
@@ -28,4 +28,13 @@ void postOrder(node *root) {
         postOrder(root->right);
     }
     printf("%d ", root->data);
+}
+
+// Print the tree's inOrder traversal
+void inOrder(node * root) {
+    if(root->left)
+        inOrder(root->left);
+    printf("%d ", root->data);
+    if(root->right)
+        inOrder(root->right);
 }
