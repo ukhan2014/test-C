@@ -19,5 +19,6 @@ typedef struct node
 } node;
 
 void preOrder(node * root);
+void postOrder(node * root);
 
 #endif /* trees_h */
