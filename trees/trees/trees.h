@@ -11,4 +11,13 @@
 
 #include <stdio.h>
 
+typedef struct node
+{
+    int data;
+    struct node * left;
+    struct node * right;
+} node;
+
+void preOrder(node * root);
+
 #endif /* trees_h */
