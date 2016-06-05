@@ -21,5 +21,6 @@ typedef struct node
 void preOrder(node * root);
 void postOrder(node * root);
 void inOrder(node * root);
+int height(node * root);
 
 #endif /* trees_h */
