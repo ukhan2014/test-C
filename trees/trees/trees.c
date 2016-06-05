@@ -48,7 +48,6 @@ int height(node * root) {
     return (((lh <= rh) ? lh : rh) + 1);
 }
 
-
 // Helper function for top_view()
 void printLeft(node * root) {
     if(!root) {
@@ -80,5 +79,4 @@ void top_view(node * root)
         tmp = tmp->right;
         printf("%d ", tmp->data);
     }
-    
 }
