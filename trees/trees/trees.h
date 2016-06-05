@@ -22,5 +22,7 @@ void preOrder(node * root);
 void postOrder(node * root);
 void inOrder(node * root);
 int height(node * root);
+void printLeft(node * root);
+void top_view(node * root);
 
 #endif /* trees_h */

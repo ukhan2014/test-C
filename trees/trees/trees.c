@@ -47,3 +47,38 @@ int height(node * root) {
     int rh = height(root->right);
     return (((lh <= rh) ? lh : rh) + 1);
 }
+
+
+// Helper function for top_view()
+void printLeft(node * root) {
+    if(!root) {
+        return;
+    }
+    printLeft(root->left);
+    printf("%d ", root->data);
+    return;
+}
+
+// Print the nodes that are visible if
+// tree is viewed from the top down
+//        3
+//      /   \
+//     5     2
+//    / \   / \
+//   1   4 6   7
+//    \       /
+//     9     8
+// Top View : 1 -> 5 -> 3 -> 2 -> 7
+void top_view(node * root)
+{
+    if(!root) {
+        return;
+    }
+    printLeft(root);
+    node * tmp = root;
+    while(tmp->right) {
+        tmp = tmp->right;
+        printf("%d ", tmp->data);
+    }
+    
+}
