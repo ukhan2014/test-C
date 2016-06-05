@@ -38,3 +38,12 @@ void inOrder(node * root) {
     if(root->right)
         inOrder(root->right);
 }
+
+// Return the height of a tree
+int height(node * root) {
+    if(!root)
+        return -1;
+    int lh = height(root->left);
+    int rh = height(root->right);
+    return (((lh <= rh) ? lh : rh) + 1);
+}
