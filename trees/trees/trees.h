@@ -26,5 +26,5 @@ void printLeft(node * root);
 void top_view(node * root);
 void printLevel(node * root, int level);
 void LevelOrder(node * root);
-
+node * insert(node * root, int value);
 #endif /* trees_h */

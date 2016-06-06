@@ -7,6 +7,7 @@
 //
 
 #include "trees.h"
+#include <stdlib.h>
 
 // Print the tree's preOrder traversal
 void preOrder(node * root) {
@@ -112,3 +113,20 @@ void LevelOrder(node * root)
     }
 }
 
+// Insert a new node into the tree
+node * insert(node * root, int value)
+{
+    node * newNode = (node *) malloc(sizeof(node));
+    newNode->data = value;
+    if(!root) {
+        return newNode;
+    }
+    else {
+        //find next spot in tree
+        
+        //place newNode in spot
+        
+        //bubble up if necessary
+    }
+    return root;
+}
