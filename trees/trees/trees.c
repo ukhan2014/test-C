@@ -114,19 +114,25 @@ void LevelOrder(node * root)
 }
 
 // Insert a new node into the tree
+//        4                   4
+//       / \     ins        /   \
+//      2   7     6        2     7
+//     / \       -->      / \   /
+//    1   3              1   3 6
 node * insert(node * root, int value)
 {
-    node * newNode = (node *) malloc(sizeof(node));
-    newNode->data = value;
     if(!root) {
+        node * newNode = (node *) malloc(sizeof(node));
+        newNode->data = value;
         return newNode;
     }
     else {
-        //find next spot in tree
-        
-        //place newNode in spot
-        
-        //bubble up if necessary
+        if(value <= root->data) {
+            root->left = insert(root->left, value);
+        }
+        else {
+            root->right = insert(root->right, value);
+        }
     }
     return root;
 }
