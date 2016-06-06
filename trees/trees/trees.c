@@ -80,3 +80,35 @@ void top_view(node * root)
         printf("%d ", tmp->data);
     }
 }
+
+// Helper function for level order traverse
+void printLevel(node * root, int level) {
+    if(!root)
+        return;
+    if(level == 1) {
+        printf("%d ", root->data);
+    }
+    else {
+        printLevel(root->left, level-1);
+        printLevel(root->right, level-1);
+    }
+}
+
+//         3
+//       /   \
+//      5     2
+//     / \    /
+//    1   4  6
+// For this tree, the level order traversal
+// is 3 -> 5 -> 2 -> 1 -> 4 -> 6
+void LevelOrder(node * root)
+{
+    if(!root)
+        return;
+    int h = height(root);
+    int i = 1;
+    for( ; i <= h; i++) {
+        printLevel(root, i);
+    }
+}
+
