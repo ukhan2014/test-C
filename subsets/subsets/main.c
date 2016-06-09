@@ -16,8 +16,10 @@
 #define BIT_0       (0x01)
 
 int main(int argc, const char * argv[]) {
+    int * subsets[100];         // array of 100 pointers to int
+    int subset_index = 0;
     int set[] = {1,2,3,4,5};    // the original set
-    int target = 5;         // the number subsets should add up to
+    int target = 5;             // the number subsets should add up to
     
     int set_size = sizeof(set)/sizeof(int);
     int powerset_size = pow(2,set_size);
@@ -50,6 +52,7 @@ int main(int argc, const char * argv[]) {
             int * correct_sum_subset = (int *) malloc(sizeof(ham * sizeof(int)));
             
             // assign to next index in our int * array[100]
+            
             
         }
     }
