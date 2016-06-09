@@ -25,25 +25,27 @@ int main(int argc, const char * argv[]) {
     
     printf("powerset_size = %d\n", powerset_size);
     printf("set_size = %d\n", set_size);
-    int i, j, sum;
+    int i;
+    int j;
+    int sum;        // variable to hold sum of subsets
+    int ham;        // variable to hold hamming weight (# of set bits)
     
     for(i = 1; i < powerset_size; i++) {
-        // initialize sum to 0
         sum = 0;
-        
+        ham = 0;
         printf("set %d = ", i);
         for(j = 0; j < set_size; j++) {
             if((i >> j)&BIT_0) {
+                ham += 1;
                 sum += set[j];
                 printf("%d ", set[j]);
             }
         }
         
-        printf("\n");
+        printf("  ham = %d \n", ham);
         
         if(sum == target) {
             printf("sum found!\n");
-            // find hamming weight of i (# of set bits in i)
             
             // allocate memory (of size = hamming weight of i)
             
