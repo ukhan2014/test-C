@@ -12,16 +12,11 @@
 #define BIT_0       (0x01)
 
 int main(int argc, const char * argv[]) {
-    
-    // insert code here...
-    printf("Hello, World!\n");
-    
     int set[] = {1,2,3,4,5};    // the original set
     int target = 5;         // the number subsets should add up to
     
     int set_size = sizeof(set)/sizeof(int);
     int powerset_size = pow(2,set_size);
-    
     
     printf("powerset_size = %d\n", powerset_size);
     printf("set_size = %d\n", set_size);
