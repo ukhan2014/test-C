@@ -6,8 +6,9 @@
 //  Copyright © 2016 Cabana. All rights reserved.
 //
 //  This code takes a set S and target value t.
-//  It outputs a pointer to all subsets of S
-//  that add up to the target t.
+//  It prints out all subsets in the powerset of
+//  set S and outputs a pointer to all subsets
+//  of S that add up to the target t.
 //
 
 #include <stdio.h>
