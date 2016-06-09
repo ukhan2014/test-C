@@ -5,6 +5,10 @@
 //  Created by Cabana on 6/7/16.
 //  Copyright © 2016 Cabana. All rights reserved.
 //
+//  This code takes a set S and target value t.
+//  It outputs a pointer to all subsets of S
+//  that add up to the target t.
+//
 
 #include <stdio.h>
 #include <math.h>
@@ -43,6 +47,7 @@ int main(int argc, const char * argv[]) {
             printf("sum found!\n");
             
             // allocate memory (of size = hamming weight of i)
+            int * correct_sum_subset = (int *) malloc(sizeof(ham * sizeof(int)));
             
             // assign to next index in our int * array[100]
             
