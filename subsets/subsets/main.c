@@ -53,7 +53,7 @@ int main(int argc, const char * argv[]) {
             int * correct_sum_subset = (int *) malloc(sizeof(ham * sizeof(int)));
             
             // assign to next index in our int * array[100]
-            
+            subsets[subset_index++] = correct_sum_subset;
             
         }
     }
