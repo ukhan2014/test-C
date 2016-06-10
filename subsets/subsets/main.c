@@ -30,8 +30,8 @@ int main(int argc, const char * argv[]) {
     printf("set_size = %d\n", set_size);
     int i;
     int j;
-    int sum;        // variable to hold sum of subsets
-    int ham;        // variable to hold hamming weight (# of set bits)
+    int sum;            // variable to hold sum of subsets
+    int ham;            // variable to hold hamming weight (# of set bits)
     int hits = 0;       // how many subsets' sum is the target value t?
     
     for(i = 1; i < powerset_size; i++) {
@@ -52,14 +52,20 @@ int main(int argc, const char * argv[]) {
             hits++;
             printf("sum found!\n");
             
-            // allocate memory (of size = hamming weight of i)
-            int * correct_sum_subset = (int *) malloc(sizeof(ham * sizeof(int)));
+            // allocate memory (of size = hamming weight + 1). We want an additional
+            // spot in the beginning for the subset size.
+            // Example: subset {5, 3, 16} is stored as: [3|5|3|16]
+            int * correct_sum_subset = (int *) malloc((ham + 1) * sizeof(int));
+            correct_sum_subset[0] = ham;
             
             int new_subset_index = 0;
+            int counter = 0;
             // fill correct_sum_subset
             for(j = 0; j < set_size; j++) {
                 if((i >> j)&BIT_0) {
-                     correct_sum_subset[new_subset_index++] = set[j];
+                    counter++;
+                    printf("counter is %d\n", counter);
+                    correct_sum_subset[new_subset_index++] = set[j];
                 }
             }
             // assign to next index in our int * array[100]
@@ -68,7 +74,7 @@ int main(int argc, const char * argv[]) {
         }
     }
     
-    printf("Subsets that meet criteria:\n");
+    printf("%d subsets that meet criteria:\n", hits);
     for(i=0; i<hits; i++) {
         for(j=0; j<sizeof(subsets[i]); j++) {
             printf("%d ", subsets[i][j]);
