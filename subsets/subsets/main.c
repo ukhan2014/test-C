@@ -31,22 +31,22 @@ int main(int argc, const char * argv[]) {
     int i;
     int j;
     int sum;            // variable to hold sum of subsets
-    int ham;            // variable to hold hamming weight (# of set bits)
+    int hamming_weight;            // variable to hold hamming weight (# of set bits)
     int hits = 0;       // how many subsets' sum is the target value t?
     
     for(i = 1; i < powerset_size; i++) {
         sum = 0;
-        ham = 0;
+        hamming_weight = 0;
         printf("set %d = ", i);
         for(j = 0; j < set_size; j++) {
             if((i >> j)&BIT_0) {
-                ham += 1;
+                hamming_weight += 1;
                 sum += set[j];
                 printf("%d ", set[j]);
             }
         }
         
-        printf("  ham = %d \n", ham);
+        printf("  ham = %d \n", hamming_weight);
         
         if(sum == target) {
             hits++;
@@ -55,8 +55,8 @@ int main(int argc, const char * argv[]) {
             // allocate memory (of size = hamming weight + 1). We want an additional
             // spot in the beginning for the subset size.
             // Example: subset {5, 3, 16} is stored as: [3|5|3|16]
-            int * correct_sum_subset = (int *) malloc((ham + 1) * sizeof(int));
-            correct_sum_subset[0] = ham;
+            int * correct_sum_subset = (int *) malloc((hamming_weight + 1) * sizeof(int));
+            correct_sum_subset[0] = hamming_weight;
             
             int new_subset_index = 0;
             int counter = 0;
