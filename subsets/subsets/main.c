@@ -55,17 +55,16 @@ int main(int argc, const char * argv[]) {
             // allocate memory (of size = hamming weight + 1). We want an additional
             // spot in the beginning for the subset size.
             // Example: subset {5, 3, 16} is stored as: [3|5|3|16]
+            printf("Allocating %d ints for array\n", hamming_weight+1);
             int * correct_sum_subset = (int *) malloc((hamming_weight + 1) * sizeof(int));
             correct_sum_subset[0] = hamming_weight;
             
-            int new_subset_index = 0;
-            int counter = 0;
+            int new_subset_index = 1;   // start at 1 to skip hamming weight
+
             // fill correct_sum_subset
             for(j = 0; j < set_size; j++) {
                 if((i >> j)&BIT_0) {
-                    counter++;
-                    printf("counter is %d\n", counter);
-                    correct_sum_subset[new_subset_index++] = set[j + 1];
+                    correct_sum_subset[new_subset_index++] = set[j];
                 }
             }
             // assign to next index in our int * array[100]
@@ -76,7 +75,7 @@ int main(int argc, const char * argv[]) {
     
     printf("%d subsets that meet criteria:\n", hits);
     for(i=0; i<hits; i++) {
-        for(j=0; j<sizeof(subsets[i]); j++) {
+        for(j=1; j<subsets[i][0] + 1; j++) {
             printf("%d ", subsets[i][j]);
         }
         printf("\n");
