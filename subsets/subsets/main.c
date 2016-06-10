@@ -46,7 +46,7 @@ int main(int argc, const char * argv[]) {
             }
         }
         
-        printf("  ham = %d \n", hamming_weight);
+        printf("\tham = %d \n", hamming_weight);
         
         if(sum == target) {
             subsets_found++;
