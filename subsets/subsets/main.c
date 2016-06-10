@@ -65,7 +65,7 @@ int main(int argc, const char * argv[]) {
                 if((i >> j)&BIT_0) {
                     counter++;
                     printf("counter is %d\n", counter);
-                    correct_sum_subset[new_subset_index++] = set[j];
+                    correct_sum_subset[new_subset_index++] = set[j + 1];
                 }
             }
             // assign to next index in our int * array[100]
