@@ -136,3 +136,52 @@ node * insert(node * root, int value)
     }
     return root;
 }
+
+/*
+ * Given a pointer to the root of a Huffman tree
+ * and a binary coded string. Print the actual
+ * string.
+ *
+ *               {ϕ,5}
+ *            0 /     \ 1
+ *           {ϕ,2}   {A,3}
+ *          0/   \1
+ *       {B,1}  {C,1}
+ *
+ *
+ * S="1001011" should output ABACA
+ */
+void decode_huff(huffnode * root, char * s)
+{
+    if(!root) {
+        return;
+    }
+    int i = 0;
+    huffnode * temp = root;
+    while(s[i] != '\0'){
+        int currentInt = s[i] - '0';
+        //printf("current int is %d\n", currentInt);
+        if(currentInt == 1) {
+            if(temp->right) {
+                //printf("going right\n");
+                temp = temp->right;
+                if(!temp->left && !temp->right) {
+                    printf("%c", temp->data);
+                    temp = root;
+                }
+            }
+        }
+        else if(currentInt == 0) {
+            if(temp->left) {
+                //printf("going left\n");
+                temp = temp->left;
+                if(!temp->left && !temp->right) {
+                    printf("%c", temp->data);
+                    temp = root;
+                }
+            }
+        }
+        i++;
+    }
+}
+
