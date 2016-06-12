@@ -185,3 +185,20 @@ void decode_huff(huffnode * root, char * s)
     }
 }
 
+/*
+ * Find lowest common ancestor of the nodes with
+ * values v1 and v2
+ */
+#define MAX_LEVELS (10)
+node * lca(node * root, int v1,int v2)
+{
+    int i;
+    while(root && i < MAX_LEVELS) {
+        //printf("i = %d\n",i);
+        printLevel(root, i);
+        printf("\n");
+        i++;
+    }
+    return root;
+}
+

@@ -39,5 +39,6 @@ void printLevel(node * root, int level);
 void LevelOrder(node * root);
 node * insert(node * root, int value);
 void decode_huff(huffnode * root, char * s);
+node * lca(node * root, int v1,int v2);
 
 #endif /* trees_h */
